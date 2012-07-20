@@ -1,0 +1,14 @@
+# show file path in the window title
+windowTitle         = "$TM_DIRECTORY/$TM_DISPLAYNAME"
+
+[ source.python ]
+softWrap            = false
+wrapColumn          = 80
+
+[ text.html ]
+softWrap            = true
+wrapColumn          = "Use Window Frame"
+
+[ * ]
+tabSize             = 2
+softTabs            = true
