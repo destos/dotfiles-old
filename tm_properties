@@ -12,3 +12,6 @@ wrapColumn          = "Use Window Frame"
 [ * ]
 tabSize             = 2
 softTabs            = true
+
+[ source.makefile ]
+softTabs            = false
