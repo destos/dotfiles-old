@@ -7,12 +7,20 @@ first-run: \
 	install-nvm \
 	install-node \
 	update-local \
-	link
+	link \
+	convert-to-git
 	
 install: \
 	update-local \
 	link
 
+convert-to-git:
+	git init
+	git remote add origin git://github.com/destos/dotfiles.git
+	git fetch
+	git branch master origin/master
+	git checkout master
+	
 update: \
 	update-local \
 	link
