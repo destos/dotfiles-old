@@ -4,11 +4,12 @@ all: update
 first-run: \
 	install-homebrew \
 	install-scm \
+	convert-to-git \
+	update-local \
 	install-nvm \
 	install-node \
-	update-local \
-	link \
-	convert-to-git
+	link
+	
 	
 install: \
 	update-local \
@@ -19,7 +20,7 @@ convert-to-git:
 	git remote add origin git://github.com/destos/dotfiles.git
 	git fetch
 	git branch master origin/master
-	git checkout master
+	git reset --hard HEAD
 	
 update: \
 	update-local \
@@ -64,10 +65,11 @@ homebrew_formulae = \
 	gist \
 	hub \
 	screen \
-	kdiff3
+	kdiff3 \
+	tree
 
 install-homebrew:
-	/usr/bin/ruby -e "$(/usr/bin/curl -fsSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)"
+	ruby -e "$(/usr/bin/curl -fsSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)"
 
 uninstall-homebrew:
 	sh $(PWD)/uninstall_homebrew.sh
