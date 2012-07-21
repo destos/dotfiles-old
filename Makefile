@@ -30,7 +30,7 @@ update: \
 update-local:
 	git pull --rebase || (git stash && git pull --rebase && git stash pop)
 	git submodule update --init
-	git submodule foreach git pull
+	git submodule foreach git checkout master && git pull
 
 ln_options = hfsv
 link:
@@ -65,7 +65,6 @@ homebrew_formulae = \
 	wget \
 	gist \
 	hub \
-	screen \
 	kdiff3 \
 	tree
 
