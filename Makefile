@@ -1,10 +1,21 @@
 all: update
 
 # Instalation routines
-first-run: install-homebrew install-git update-local link
-install: update-local link
+first-run: \
+	install-homebrew \
+	install-scm \
+	install-nvm \
+	install-node \
+	update-local \
+	link
+	
+install: \
+	update-local \
+	link
 
-update: update-local link
+update: \
+	update-local \
+	link
 
 # Update local dotfiles
 update-local:
@@ -14,19 +25,38 @@ update-local:
 
 ln_options = hfsv
 link:
+	ln -$(ln_options) $(PWD)/bash_profile $(HOME)/.bash_profile
+	ln -$(ln_options) $(PWD)/bash_prompt $(HOME)/.bash_prompt
+	ln -$(ln_options) $(PWD)/aliases $(HOME)/.aliases
+	ln -$(ln_options) $(PWD)/exports $(HOME)/.exports
+	ln -$(ln_options) $(PWD)/extra  $(HOME)/.extra
 	ln -$(ln_options) $(PWD)/gitconfig $(HOME)/.gitconfig
 	ln -$(ln_options) $(PWD)/gitignore $(HOME)/.gitignore
+	ln -$(ln_options) $(PWD)/hgrc $(HOME)/.hgrc
 	ln -$(ln_options) $(PWD)/tm_properties $(HOME)/.tm_properties
+	ln -$(ln_options) $(PWD)/npmrc $(HOME)/.npmrc
+	ln -$(ln_options) $(PWD)/kdiff3rc $(HOME)/.kdiff3rc
 
+## SCM
+install-scm: \
+	install-git \
+	install-hg
+	
 # Git
 install-git:
 	brew install git
 
+# Mercurial
+install-hg:
+	brew install hg
+
 # Homebrew
 homebrew_formulae = \
-	wget\
-	gist\
-	hub
+	wget \
+	gist \
+	hub \
+	screen \
+	kdiff3
 
 install-homebrew:
 	/usr/bin/ruby -e "$(/usr/bin/curl -fsSL https://raw.github.com/mxcl/homebrew/master/Library/Contributions/install_homebrew.rb)"
@@ -45,18 +75,40 @@ install-homebrew-formulae:
 uninstall-homebrew-formulae:
 	brew uninstall $(homebrew_formulae)
 
-# TODO: Install nvm + node
+# Install node version manager + latest node
+
+#use n for node version management
+install-nvm:
+	cd $(PWD)/n && make install
+	
+uninstall-nvm:
+	cd $(PWD)/n && make uninstall
 
 install-node:
+	n stable
 
+test:
+	@echo 'test $(version)'
+	
 uninstall-node:
-
+	n rm 
+	
 # Cleanup routines
-clean: uninstall unlick
+clean: uninstall unlink
 
-uninstall: uninstall-homebrew uninstall-node
+uninstall: \
+	uninstall-homebrew \
+	uninstall-nvm
 
 unlink:
+	unlink $(HOME)/.bash_profile
+	unlink $(HOME)/.bash_prompt
+	unlink $(HOME)/.aliases
+	unlink $(HOME)/.exports
+	unlink $(HOME)/.extra
 	unlink $(HOME)/.gitconfig
 	unlink $(HOME)/.gitignore
+	unlink $(HOME)/.hgrc
 	unlink $(HOME)/.tm_properties
+	unlink $(HOME)/.npmrc
+	unlink $(HOME)/.kdiff3rc

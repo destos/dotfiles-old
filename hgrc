@@ -1,0 +1,24 @@
+[ui]
+username = Pat Forringer <pforringer@consumeraffairs.com>
+editor = mate -w
+merge = kdiff3
+
+[merge-tools]
+kdiff3.executable = kdiff3
+kdiff3.args = $base $local $other -o $output
+kdiff.priority = 1
+
+[extensions]
+hgext.bookmarks =
+hgext.fetch =
+hgext.graphlog = 
+mq =
+pager =
+hgshelve=~/.source/hgshelve/hgshelve.py
+
+[trusted]
+users = root, jgmize, jsatt, jwhitlock
+groups = www-data
+
+[pager]
+pager = LESS='FSRX' lessd

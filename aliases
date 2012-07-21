@@ -1,0 +1,74 @@
+## Project specific
+
+#project-doc
+alias projd="cd ~/Sites/project_doc"
+alias projdn="cd ~/Sites/project_doc && npm start"
+
+#ConsumerAffairs
+alias ca="cd ~/dev/consumeraffairs && workon consumeraffairs"
+alias stca="ca && ./manage.py runserver"
+alias catest="./manage.py test"
+alias ipdbtest="bin/ipdb_test"
+
+#move to different wordpress directories from wp root dir
+alias wpc="cd wp/wp-content"
+alias wpt="cd wp/wp-content/themes"
+alias wpp="cd wp/wp-content/plugins"
+
+## Sortcuts
+
+#git aliases
+alias g="git"
+alias gs="git status"
+
+#Finder
+alias o="open . &"
+alias ff="open -a Firefox"
+
+#reload
+alias ra="source ~/.aliases"
+alias ea="mate -w ~/.aliases && ra"
+
+#edit dot files
+alias edot="mate -w ~/dotfiles"
+
+#misc
+alias h="history"
+
+## Utility
+
+alias ip="curl -s http://checkip.dyndns.com/ | sed 's/[^0-9\.]//g'"
+alias localip="ipconfig getifaddr en1"
+
+#process grep
+alias pgrep="ps aux | grep"
+
+#htop pat
+alias htopp="htop -u pat"
+
+#navigationr
+alias ..="cd ../"
+alias ...="cd ../../"
+alias ...="cd ../../../"
+alias ~='cd ~'
+alias ll='tree --dirsfirst -ChFupDaLg 1'
+
+#usage
+alias d="du -h -d=1"
+alias df="df -h"
+
+function take () {
+	mkdir $1
+	cd $1
+}
+
+## Defaults
+alias grep='GREP_COLOR="1;37;45" LANG=C grep --color=auto'
+
+
+
+#TO ADD
+#spotlight switch
+#sudo mdutil -a -i off
+#sudo mdutil -a -i on
+

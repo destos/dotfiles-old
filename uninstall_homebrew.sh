@@ -1,4 +1,5 @@
 #!/bin/sh
+# https://gist.github.com/1173223 
 # Just copy and paste the lines below (all at once, it won't work line by line!)
 # MAKE SURE YOU ARE HAPPY WITH WHAT IT DOES FIRST! THERE IS NO WARRANTY!
 
