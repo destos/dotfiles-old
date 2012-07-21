@@ -39,5 +39,10 @@ complete -o "nospace" -W "Finder Dock Mail Safari iTunes iCal Address\ Book Syst
 # If possible, add tab completion for many more commands
 [ -f /etc/bash_completion ] && source /etc/bash_completion
 
+# brew bash completion
+if [ -f `brew --prefix`/etc/bash-completion ]; then
+ . `brew --prefix`/etc/bash-completion
+fi
+
 PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 

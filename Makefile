@@ -61,6 +61,7 @@ install-hg:
 
 # Homebrew
 homebrew_formulae = \
+	bash-completion \
 	wget \
 	gist \
 	hub \
