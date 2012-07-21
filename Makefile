@@ -66,6 +66,7 @@ homebrew_formulae = \
 	gist \
 	hub \
 	kdiff3 \
+	htop \
 	tree
 
 install-homebrew:
