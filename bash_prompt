@@ -1,3 +1,65 @@
+# Set colours, and styles
+txtund=$(tput sgr 0 1)             # Underline
+txtbld=$(tput bold)                # Bold
+
+red=$(tput setaf 1)                #  red
+bldred=${txtbld}$(tput setaf 1)    #  red bold
+gre=$(tput setaf 2)                #  green
+bldgre=${txtbld}$(tput setaf 2)    #  green bold
+yel=$(tput setaf 3)                #  yellow
+bldyel=${txtbld}$(tput setaf 3)    #  yellow bold
+blu=$(tput setaf 4)                #  blue
+bldblu=${txtbld}$(tput setaf 4)    #  blue bold
+pur=$(tput setaf 5)                #  purple
+bldpur=${txtbld}$(tput setaf 5)    #  purple bold
+tel=$(tput setaf 6)                #  teal
+bldtel=${txtbld}$(tput setaf 6)    #  teal bold
+wht=$(tput setaf 7)                #  white
+bldwht=${txtbld}$(tput setaf 7)    #  white bold
+
+txtrst=$(tput sgr0)                # Reset
+
+info=${bldwht}*${txtrst}           # Feedback
+pass=${bldblu}*${txtrst}
+warn=${bldred}*${txtrst}
+ques=${bldblu}?${txtrst}
+
+# Get hash of head if exists
+parse_git_hash ()
+{
+  if git rev-parse --short HEAD >/dev/null 2>&1
+    then
+      githash=$(git rev-parse --short HEAD)
+    else
+      return 0
+  fi
+  echo -e "${yel} $githash${txtrst}"
+}
+
+# Get stash status of branch if exists
+parse_git_stash ()
+{
+  [[ $(git stash list 2> /dev/null | tail -n1) != "" ]] && echo " ¥"
+}
+
+# Swap colours if branch is dirty
+branch_color ()
+{
+  if git rev-parse --git-dir >/dev/null 2>&1
+    then
+      color=""
+    if git diff --quiet 2>/dev/null >&2
+      then
+        color="${bldgre}"
+      else
+        color=${bldred}
+    fi
+  else
+    return 0
+  fi
+  echo -ne $color
+}
+
 __git_ps1 () 
 { 
     local b="$(git symbolic-ref HEAD 2>/dev/null)";
@@ -6,4 +68,5 @@ __git_ps1 ()
     fi
 }
 
-PS1='\u@\h:$(__git_ps1 " (%s)") \w\n\$ '
+# Print that sucker
+export PS1='${bldtel}\u${bldwht}@${tel}\h${txtrst} [${bldblu}\w${txtrst}$(branch_color)$(__git_ps1)${txtrst}$(parse_git_hash)${blu}$(parse_git_stash)${txtrst}]\n${gre}\$${txtrst} '
