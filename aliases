@@ -57,6 +57,8 @@ alias ll='tree --dirsfirst -ChFupDaLg 1'
 alias d="du -h -d=1"
 alias df="df -h"
 
+alias npm="n npm `node -v`"
+
 function take () {
 	mkdir $1
 	cd $1
