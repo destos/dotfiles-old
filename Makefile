@@ -67,6 +67,7 @@ homebrew_formulae = \
 	hub \
 	kdiff3 \
 	htop \
+	gawk \
 	node \
 	tree
 

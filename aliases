@@ -40,7 +40,7 @@ alias h="history"
 ## Utility
 
 alias ip="curl -s http://checkip.dyndns.com/ | sed 's/[^0-9\.]//g'"
-alias localip="ipconfig getifaddr en1"
+alias localip="ipconfig getifaddr en1 || ipconfig getifaddr en0"
 
 #process grep
 alias pgrep="ps aux | grep"
