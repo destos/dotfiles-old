@@ -20,6 +20,8 @@ alias wpp="cd wp/wp-content/plugins"
 #git aliases
 alias g="git"
 alias gs="git status"
+# git gets aliased to hub
+eval "$(hub alias -s)"
 
 #Finder
 alias o="open . &"
@@ -56,8 +58,6 @@ alias ll='tree --dirsfirst -ChFupDaLg 1'
 #usage
 alias d="du -h -d=1"
 alias df="df -h"
-
-alias npm="n npm `node -v`"
 
 function take () {
 	mkdir $1
