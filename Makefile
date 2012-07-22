@@ -67,6 +67,7 @@ homebrew_formulae = \
 	hub \
 	kdiff3 \
 	htop \
+	node \
 	tree
 
 install-homebrew:
@@ -86,24 +87,6 @@ install-homebrew-formulae:
 uninstall-homebrew-formulae:
 	brew uninstall $(homebrew_formulae)
 
-# Install node version manager + latest node
-
-#use n for node version management
-install-nvm:
-	cd $(PWD)/n && make install
-	
-uninstall-nvm:
-	cd $(PWD)/n && make uninstall
-
-install-node:
-	n stable
-
-test:
-	@echo 'test $(version)'
-	
-uninstall-node:
-	n rm 
-	
 # Cleanup routines
 clean: uninstall unlink
 
